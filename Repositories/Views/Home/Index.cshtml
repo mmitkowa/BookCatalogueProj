@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Book>
+
+<h2>Book Catalogue</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@(book?.Title)</td>
+                <td>@(book?.Author)</td>
+                <td>@(book?.Genre)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@book.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@book.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">No books found.</td>
+        </tr>
+    }
+</table>
